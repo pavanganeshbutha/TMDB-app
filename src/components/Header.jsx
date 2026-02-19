@@ -2,9 +2,9 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   return (
-    <div className="border p-2">
+    <header className=" sticky border p-2 md:px-10 md:text-xl text-2xl bg-blue-700 text-white">
       <Navbar />
-    </div>
+    </header>
   );
 };
 
