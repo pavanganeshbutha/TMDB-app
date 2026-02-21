@@ -45,14 +45,14 @@ const Banner = () => {
 
   return (
     <section
-      className=" min-h-134 bg-blue-600/80 text-white flex justify-center bg-cover bg-blend-multiply"
+      className=" min-h-134 bg-blue-600/80 text-white flex justify-center md:bg-cover bg-contain bg-blend-multiply"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original${backgroundImage})`,
       }}
     >
       <div className="w-8/10 flex flex-col justify-center">
-        <h1 className="text-9xl font-extrabold mb-6">Welcome.</h1>
-        <p className="text-7xl font">
+        <h1 className="md:text-9xl text-7xl font-extrabold mb-6">Welcome.</h1>
+        <p className="md:text-7xl  text-5xl md:leading-23 leading-16">
           Millions of movies, TV shows and people to discover. Explore now.
         </p>
       </div>
