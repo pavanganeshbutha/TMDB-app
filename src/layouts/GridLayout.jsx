@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
+import { LoaderCircleIcon } from "lucide-react";
 import { map } from "firebase/firestore/pipelines";
 
 const GridLayout = () => {
   const [movies, setMovies] = useState([]);
-  const [pageno, setPageno] = useState(1);
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     const options = {
       method: "GET",
       url: "https://api.themoviedb.org/3/trending/movie/day",
-      params: { language: "en-US", page: pageno },
+      params: { language: "en-US" },
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${import.meta.env.VITE_TMDB_ACCESS_TOKEN}`,
@@ -21,16 +22,22 @@ const GridLayout = () => {
     axios
       .request(options)
       .then((response) => {
-        console.log(response.data.results);
         setMovies(response.data.results);
+        setIsloading(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="border py-10 flex justify-center">
+        <LoaderCircleIcon className="size-10  text-blue-600 animate-spin" />
+      </div>
+    );
+  }
   return (
-    <section className="px-8 py-8">
+    <section className="md:px-15 py-8">
+      <h2 className="ml-2 mb-9 font-semibold text-3xl">Trending Movies</h2>
       <div className=" px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-center gap-6">
         {movies.map((movie) => {
           return (
@@ -38,6 +45,7 @@ const GridLayout = () => {
               key={movie.id}
               moviePoster={movie.poster_path}
               movieTitle={movie.title}
+              movieDetails={`movie/${movie.id}`}
             />
           );
         })}

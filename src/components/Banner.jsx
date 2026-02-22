@@ -32,7 +32,6 @@ const Banner = () => {
           const item = backdrops[i];
           if (item.width === 3840) {
             fileName = item.file_path;
-            console.log(item.width, fileName);
             break;
           }
         }
