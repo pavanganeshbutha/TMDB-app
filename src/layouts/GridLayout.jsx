@@ -30,7 +30,8 @@ const GridLayout = () => {
   }, []);
 
   return (
-    <section className="px-8 py-8">
+    <section className="px-15 py-8">
+      <h2 className="ml-2 mb-9 font-semibold text-3xl">Trending Movies</h2>
       <div className=" px-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center items-center gap-6">
         {movies.map((movie) => {
           return (
